@@ -2,23 +2,27 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 import os
 from pyduino import *
 import time
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+from models import User, Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 app = Flask(__name__)
 
 # initialize connection to Arduino
 # if your arduino was running on a serial port other than '/dev/ttyACM0/'
 # declare: a = Arduino(serial_port='/dev/ttyXXXX')
-a = Arduino()
-time.sleep(3)
+#a = Arduino()
+#time.sleep(3)
 
 # declare the pins we're using
-LED_PIN = 3
-ANALOG_PIN = 0
+#LED_PIN = 3
+#ANALOG_PIN = 0
 
 # initialize the digital pin as output
-a.set_pin_mode(LED_PIN,'O')
+#a.set_pin_mode(LED_PIN,'O')
 
-print('Arduino initialized')
+#print('Arduino initialized')
 
 
 @app.route('/')
@@ -88,9 +92,51 @@ def turn_off():
     return redirect( url_for('hello_world') )
 
 
-@app.route('/newuser')
+class ReusableForm(Form):
+    FName = StringField('Fname:', validators=[validators.required()])
+    LName = StringField('Lname:', validators=[validators.required()])
+    Username = StringField('Username:', validators=[validators.required()])
+    Email = StringField('Email:', validators=[validators.required(), validators.Length(min=6, max=35)])
+    Password = StringField('Password:', validators=[validators.required(), validators.Length(min=3, max=35)])
+    PhoneNumber = StringField('PhoneNumber:', validators=[validators.required()])
+    EmergencyPhone = StringField('EmergencyPhone:', validators=[validators.required()])
+ 
+@app.route("/newuser", methods=['GET', 'POST'])
 def new_user():
-    return render_template('newuser.html')
+    form = ReusableForm(request.form)
+ 
+    print form.errors
+    if request.method == 'POST':
+        FName=request.form['FName']
+        LName=request.form['LName']
+        Username=request.form['Username']
+        Email=request.form['Email']
+        Password=request.form['Password']
+        PhoneNumber=request.form['PhoneNumber']
+        EmergencyPhone=request.form['EmergencyPhone']
+        print FName, " ", LName, " ", Username, " ", Email, " ", Password, " ", PhoneNumber, " ", EmergencyPhone
+ 
+        if form.validate():
+            engine = create_engine('sqlite:///sqlalchemy.db')
+            Base.metadata.bind = engine
+            DBSession = sessionmaker(bind=engine)
+            session = DBSession()
+            new_user = User()
+            new_user.FName = form.FName.data
+            new_user.LName = form.LName.data
+            new_user.Username = form.Username.data
+            new_user.Email = form.Email.data
+            new_user.Password = form.Password.data
+            new_user.PhoneNumber = form.PhoneNumber.data
+            new_user.EmergencyPhone = form.EmergencyPhone.data
+            session.add(new_user)
+            session.commit()
+            flash('Thanks for registering, ' + FName)
+        else:
+            flash('Error: All the form fields are required. ')
+ 
+    return render_template('newuser.html', form=form)
+
 
 @app.route('/newroom')
 def new_room():
