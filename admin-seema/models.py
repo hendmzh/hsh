@@ -20,7 +20,7 @@ class User(Base):
     PhoneNumber = Column(Integer, nullable=True)
     EmergencyPhone = Column(Integer, nullable=True)
  
- class Admin(Base):
+class Admin(Base):
     __tablename__ = 'Admin'
     AdminID = Column(Integer, primary_key=True)
     FName = Column(String(250), nullable=False)
@@ -28,13 +28,13 @@ class User(Base):
     Username = Column(String(250), nullable=False)
     Password = Column(String(250), nullable=False)
 
- class Room(Base):
+class Room(Base):
     __tablename__ = 'Room'
     RoomID = Column(Integer, primary_key=True)
     Name = Column(String(250), nullable=False)
     SensorID = Column(Integer, nullable=False)
 
- class Appliance(Base):
+class Appliance(Base):
     __tablename__ = 'Appliance'
     ApplianceID = Column(Integer, primary_key=True)
     Name = Column(String(250), nullable=False)
@@ -42,14 +42,14 @@ class User(Base):
     RoomID = Column(Integer, ForeignKey('Room.RoomID'))
     Room = relationship(Room)
 
- class Door(Base):
+class Door(Base):
     __tablename__ = 'Door'
     DoorID = Column(Integer, primary_key=True)
     State = Column(String(250), nullable=False)
     RoomID = Column(Integer, ForeignKey('Room.RoomID'))
     Room = relationship(Room)
 
- class Wheelchair(Base):
+class Wheelchair(Base):
     __tablename__ = 'Wheelchair'
     WheelchairID = Column(Integer, primary_key=True)
     UserID = Column(Integer, ForeignKey('User.UserID'))
