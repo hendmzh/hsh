@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js cookie_used_true">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width">
+
+  <meta name="csrf-param" content="authenticity_token" />
+
+  <title>Add Appliance/Door</title>
+
+
+  <link rel="stylesheet" media="all" href="https://production-assets.codepen.io/assets/global/global-MQ-efb9341bb0d72251dbbeb4b345f866c4114c70ca998ae92c22dcc1c0bd5f0ca7.css" />
+
+  <link rel="stylesheet" media="screen" href="https://production-assets.codepen.io/assets/accounts/form-b513a0e85a7ab3559f0087dab0b041901476310228a475775b68d8673b5360ca.css" />
+
+  <link rel="stylesheet" media="screen" href="https://production-assets.codepen.io/assets/jobs/jobs-f3f40c3f3b14c28b98d8f1f19090ca7184f8fff6f69c146e2d10d66d47ab7e80.css" />
+
+
+</head>
+
+<body>
+
+    <div class="grid-2-3" style="padding-right: 20px;">
+
+      <form class="top-label-form normal-labels job-posting-form edit-job-posting-form module" id="job-posting-form" accept-charset="UTF-8" action="" method="post" role="form">
+    {{ form.csrf }}
+
+    <div id="div-current_charge_type" class="error-wrap">
+  <div class="row-of-radio">
+      <div>
+
+        <input required="required" class="show-control" type="radio" value="Appliance" name="Type" id="Type" />
+
+        <label for="Type">
+          <em>Appliance</em> </label>
+      <div id="div-featured_text" class="show-if-active featured_text">
+      	<select id="Name" name="Name">
+      	<option value="Light">Light</option>
+      	<option value="Air Conditioner">Air Conditioner</option>
+      	<option value="Television">Television</option>
+      	<option value="Curtain">Curtain</option>
+      	<option value="Oven">Oven</option>
+</select>
+      </div> 
+
+
+</div>
+
+            <div>
+        <input required="required" class="show-control" type="radio" value="Door" name="Type" id="Type" />
+
+        <label for="Type">
+          <em>Door</em> </label>
+
+      </div>
+
+  </div>
+</div>
+
+
+  <div id="div-title" class="error-wrap title">
+          <label for="Rooms"> Room </label>
+<select id="Rooms" name="Rooms">
+{% for id,name in form.Rooms.choices %}
+    <option name="Rooms" value="{{ id }}">{{ name }}</option>
+{% endfor %}
+</select>
+</div>
+
+    <button type="submit" class="btn btn-success">Add</button>
+
+</form>
+
+<br>
+
+ 
+</div>
+<br>            
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+  if (window.Stripe) {
+    window.Stripe.setPublishableKey('pk_live_UTyc1xWjfbdGEPXLAQ4ldn1p');
+  }
+</script>
+
+
+</body>
+
+</html>
