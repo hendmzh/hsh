@@ -197,6 +197,22 @@ def user_login():
             print("wrong user or pass")
             return jsonify({'error': 'Not found'})
 
+
+# API for the getting a room's list of appliances
+@app.route('/user_login', methods = ['GET'])
+def get_appliances():
+    if not request.json or not 'username' in request.json or not 'password' in request.json:
+        abort(400)
+    else:
+        currentUser = db_session.query(User).filter(User.Username==request.json['username'], User.Password==request.json['password']).first()
+        if currentUser:
+            print("user logged in successfully..")
+            dict_user = currentUser.as_dict()
+            return jsonify(dict_user)
+        else:
+            print("wrong user or pass")
+            return jsonify({'error': 'Not found'})
+
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
     app.run(host='0.0.0.0')

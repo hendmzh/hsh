@@ -37,6 +37,9 @@ class Room(Base):
     Name = Column(String(250), nullable=False)
     SensorID = Column(String(250), nullable=False)
 
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 class Appliance(Base):
     __tablename__ = 'Appliance'
     ApplianceID = Column(Integer, primary_key=True)
@@ -45,6 +48,9 @@ class Appliance(Base):
     RoomID = Column(Integer, ForeignKey('Room.RoomID'))
     Room = relationship(Room)
 
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 class Door(Base):
     __tablename__ = 'Door'
     DoorID = Column(Integer, primary_key=True)
@@ -52,11 +58,17 @@ class Door(Base):
     RoomID = Column(Integer, ForeignKey('Room.RoomID'))
     Room = relationship(Room)
 
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 class Wheelchair(Base):
     __tablename__ = 'Wheelchair'
     WheelchairID = Column(Integer, primary_key=True)
     UserID = Column(Integer, ForeignKey('User.UserID'))
     User = relationship(User)
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 #class Address(Base):
     #__tablename__ = 'address'
