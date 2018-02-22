@@ -8,6 +8,6 @@
 import Foundation
 
 struct GlobalVariables {
-    static var serverip = "192.168.100.11"
-    static var server = "http://192.168.100.11:5000"
+    static var serverip = "192.168.11.107"
+    static var server = "http://192.168.11.107/:5000"
 }

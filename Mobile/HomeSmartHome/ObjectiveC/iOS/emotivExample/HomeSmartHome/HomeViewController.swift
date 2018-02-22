@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class HomeViewController: UIViewController {
     
     var userInfo: User!
@@ -17,6 +18,8 @@ class HomeViewController: UIViewController {
     @IBOutlet var gender: UILabel!
     @IBOutlet var emergencyNum: UILabel!
     @IBOutlet var email: UILabel!
+    
+    @IBOutlet var call: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,19 @@ class HomeViewController: UIViewController {
         email.text=userInfo.email
     }
     
+
+    @IBAction func makeAPhoneCall() {
+        if let url = URL(string: "tel://"+userInfo.contact), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
+    }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

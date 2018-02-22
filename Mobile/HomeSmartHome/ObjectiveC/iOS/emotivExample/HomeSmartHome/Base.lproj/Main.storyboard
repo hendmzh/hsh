@@ -21,6 +21,50 @@
         </array>
     </customFonts>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="J1u-QZ-0vO">
+            <objects>
+                <viewController id="6J3-2a-cCs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X3W-5c-Non"/>
+                        <viewControllerLayoutGuide type="bottom" id="JUp-gW-IdT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7T5-1d-9gx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="headset" translatesAutoresizingMaskIntoConstraints="NO" id="TE7-OK-xYA">
+                                <rect key="frame" x="31" y="311" width="313" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jn6-W3-d1L" colorLabel="IBBuiltInLabel-Blue">
+                                <rect key="frame" x="0.0" y="608" width="375" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40238669510000002" green="0.71083062890000004" blue="0.89833611250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" red="1" green="0.99296591749999996" blue="0.97662403050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="1" green="0.957641831" blue="0.96336591959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="c13-1R-xbi" kind="modal" id="T1l-9t-dWc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correctly postition the headset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyp-lo-Dh7">
+                                <rect key="frame" x="48" y="189" width="296" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sKV-qD-QaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1119" y="-654"/>
+        </scene>
         <!--Mc View Controller-->
         <scene sceneID="5Vb-Op-QDM">
             <objects>
@@ -273,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LE-NA-PHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-753"/>
+            <point key="canvasLocation" x="2089" y="-688"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vNz-0B-mG5">
@@ -309,8 +353,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome, " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qw-h1-Ivq">
-                                <rect key="frame" x="16" y="143" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome home, " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qw-h1-Ivq">
+                                <rect key="frame" x="16" y="143" width="343" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.31030744310000002" green="0.3148609698" blue="0.42696183920000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -331,6 +375,14 @@
                                     <segue destination="PEl-hk-ItK" kind="show" id="7jC-eA-mBv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpq-J4-HfI">
+                                <rect key="frame" x="87" y="394" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Call"/>
+                                <connections>
+                                    <action selector="makeAPhoneCall" destination="zDZ-QH-Wyk" eventType="touchUpInside" id="uh6-7t-mPJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -349,6 +401,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="call" destination="Mpq-J4-HfI" id="V21-UU-SVA"/>
                         <outlet property="email" destination="ebl-iz-esq" id="kAe-Ba-bJi"/>
                         <outlet property="emergencyNum" destination="p7P-qw-Exq" id="wuZ-Y3-dBA"/>
                         <outlet property="fullname" destination="g20-Y5-JdT" id="oPG-Ps-EeO"/>
@@ -697,6 +750,7 @@
         <image name="email" width="26" height="26"/>
         <image name="environment" width="256" height="256"/>
         <image name="gender" width="32" height="32"/>
+        <image name="headset" width="1130" height="354"/>
         <image name="id" width="32" height="32"/>
         <image name="logout" width="24" height="24"/>
         <image name="name" width="32" height="32"/>

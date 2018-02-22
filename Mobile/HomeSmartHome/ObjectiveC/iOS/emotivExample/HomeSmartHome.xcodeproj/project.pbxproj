@@ -38,6 +38,9 @@
 		41FF15B3203DA5E600087B3F /* ProximityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FF15B2203DA5E600087B3F /* ProximityManager.swift */; };
 		41FF15B7203DA72400087B3F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FF15B6203DA72400087B3F /* UIColor+Extensions.swift */; };
 		41FF15B9203DA85E00087B3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FF15B8203DA85E00087B3F /* AppDelegate.swift */; };
+		8478B3F2203E2436002C8C00 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B3F1203E2436002C8C00 /* Appliance.swift */; };
+		8478B3F4203E9671002C8C00 /* headsetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B3F3203E9671002C8C00 /* headsetViewController.swift */; };
+		8478B3F6203EA9D8002C8C00 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B3F5203EA9D8002C8C00 /* Door.swift */; };
 		E926F2991BC37C9E002E4BD5 /* edk_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E926F2981BC37C9E002E4BD5 /* edk_ios.framework */; };
 		E926F29A1BC37C9E002E4BD5 /* edk_ios.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E926F2981BC37C9E002E4BD5 /* edk_ios.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9C160431A9DB99C00D2E4F1 /* McViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C160421A9DB99C00D2E4F1 /* McViewController.m */; };
@@ -210,6 +213,9 @@
 		41FF15B2203DA5E600087B3F /* ProximityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityManager.swift; sourceTree = "<group>"; };
 		41FF15B6203DA72400087B3F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		41FF15B8203DA85E00087B3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8478B3F1203E2436002C8C00 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
+		8478B3F3203E9671002C8C00 /* headsetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = headsetViewController.swift; sourceTree = "<group>"; };
+		8478B3F5203EA9D8002C8C00 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
 		E926F2981BC37C9E002E4BD5 /* edk_ios.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = edk_ios.framework; path = ../../../../lib/iOS/edk_ios.framework; sourceTree = "<group>"; };
 		E926F29F1BC380CC002E4BD5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
 		E9C160371A9DB99B00D2E4F1 /* MentalCommand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalCommand.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +275,7 @@
 				418BB0E520322073007A7D92 /* LoginViewController.swift */,
 				41FF15AC203DA3E300087B3F /* AppliancesViewController.swift */,
 				41FF15AE203DA46300087B3F /* BeaconsViewController.swift */,
+				8478B3F3203E9671002C8C00 /* headsetViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -282,6 +289,8 @@
 				41FF15B2203DA5E600087B3F /* ProximityManager.swift */,
 				41FF15B6203DA72400087B3F /* UIColor+Extensions.swift */,
 				41346C46203DD76E007BA140 /* Environment.swift */,
+				8478B3F1203E2436002C8C00 /* Appliance.swift */,
+				8478B3F5203EA9D8002C8C00 /* Door.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -405,7 +414,7 @@
 				TargetAttributes = {
 					E9C160361A9DB99B00D2E4F1 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 2CE99B6QZH;
+						DevelopmentTeam = 52JNU2XT66;
 						LastSwiftMigration = 0920;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -579,13 +588,16 @@
 				41346C47203DD76E007BA140 /* Environment.swift in Sources */,
 				417059BA2037211D00743F46 /* YokoTextField.swift in Sources */,
 				E9C160431A9DB99C00D2E4F1 /* McViewController.m in Sources */,
+				8478B3F4203E9671002C8C00 /* headsetViewController.swift in Sources */,
 				417059BF2037211D00743F46 /* AkiraTextField.swift in Sources */,
 				E9C160641A9DBA0200D2E4F1 /* EngineWidget.mm in Sources */,
 				418BB0E8203220DA007A7D92 /* User.swift in Sources */,
 				417059C02037211D00743F46 /* IsaoTextField.swift in Sources */,
+				8478B3F6203EA9D8002C8C00 /* Door.swift in Sources */,
 				417059B82037211D00743F46 /* HoshiTextField.swift in Sources */,
 				41FF15B7203DA72400087B3F /* UIColor+Extensions.swift in Sources */,
 				417059BC2037211D00743F46 /* JiroTextField.swift in Sources */,
+				8478B3F2203E2436002C8C00 /* Appliance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,7 +721,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 2CE99B6QZH;
+				DEVELOPMENT_TEAM = 52JNU2XT66;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -736,7 +748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo.seema;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -769,7 +781,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = 2CE99B6QZH;
+				DEVELOPMENT_TEAM = 52JNU2XT66;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -789,7 +801,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo.seema;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;

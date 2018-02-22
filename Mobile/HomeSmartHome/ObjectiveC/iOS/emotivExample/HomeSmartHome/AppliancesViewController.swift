@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 @available(iOS 9.0, *)
 @available(iOS 9.0, *)
 @available(iOS 9.0, *)
@@ -29,6 +30,12 @@ class AppliancesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    Appliance.getCurrentAppliances();
+    Door.getCurrentDoors();
+        
+        
+        
         self.proximityManager.requestAuthorization()
         self.updateBeaconZoneViews(beaconIdentifiersInRange: [])
         
