@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">            
+        <title>Form</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="myStyle.css">
+        <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+        <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+
+
+
+<style>
+body{
+background:url('/static/images/bg.jpg') no-repeat center center fixed;
+background-size: cover;
+}
+/* structure */
+.form{
+  max-width:570px;
+  padding:30px;
+  margin:40px auto;
+  background: #FFF;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+}
+/* form header */
+.form h1{
+  background: #2A88AD;
+  padding: 20px 30px 15px 30px;
+  margin: -30px -30px 30px -30px;
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+  font: normal 30px 'Bitter', serif;
+  box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  border: 1px solid #257C9E;
+}
+/* 
+.form h1 > span{
+  display: block;
+  margin-top: 2px;
+  font: 13px Arial, Helvetica, sans-serif;
+}
+ */
+/*  spaces between headers */
+.form label{
+  display: block;
+  font: 13px Arial, Helvetica, sans-serif;
+  color: #888;
+  margin-bottom: 15px;
+}
+/* headers */
+.form .part{
+  font: normal 20px 'Bitter', serif;
+  color: #2A88AD;
+    margin-bottom: 5px;
+    margin-top:10px;
+}
+/* header circles */
+.form .part span {
+  background: #2A88AD;
+  padding: 5px 10px 5px 10px;
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  font-size: 14px;
+  margin-left: -45px;
+  color: #fff;
+  margin-top: -3px;
+}
+/* button */
+/* .form input[type="button"],  */
+.form input[type="submit"]{
+  background: #2A88AD;
+  padding: 8px 20px 8px 20px;
+  border-radius: 5px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+  font: normal 30px 'Bitter', serif;
+  box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+  border: 1px solid #257C9E;
+  font-size: 15px;
+}
+/* .form input[type="button"]:hover,  */
+.form input[type="submit"]:hover{
+  background: #2A6881;
+  box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+}
+/* feilds width */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+/* icons colors */
+body {
+  padding: 1em;
+/*   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 15px;
+  color: #b9b9b9;
+  background-color: #e3e3e3;
+}
+h4 {
+  color: #191970;
+  
+  text-align:center;
+}
+/* fields */
+input,
+input[type="radio"] + label,
+input[type="checkbox"] + label:before,
+field option,
+field {
+  width: 100%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+input:focus {
+  outline: 0;
+  border-color: DarkGoldenRod;
+}
+input:focus + .input-icon i {
+  color:  #2A88AD;
+}
+input:focus + .input-icon:after {
+  border-right-color: #191970;
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"] + label,
+field {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  float: left;
+  border-radius: 0;
+}
+input[type="radio"] + label:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+input[type="radio"] + label:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+input[type="radio"] + label i {
+  padding-right: 0.4em;
+}
+input[type="radio"]:checked + label,
+input:checked + label:before,
+field:focus,
+field:active {
+  background-color:  #2A88AD;
+  color: #fff;
+  border-color: DarkGoldenRod;
+}
+
+field option {
+  background-color: #191970;
+  color: pink;
+}
+.gp-field {
+  margin-bottom: 1em;
+  /* margin-top:3px; */
+  zoom: 1;
+}
+.gp-field:before,
+.gp-field:after {
+  content: "";
+  display: table;
+}
+.gp-field:after {
+  clear: both;
+}
+.fIcon {
+  position: relative;
+}
+.fIcon input {
+  padding-left: 4.4em;
+}
+.fIcon .input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.4em;
+  height: 3.4em;
+  line-height: 3.4em;
+  text-align: center;
+  pointer-events: none;
+}
+.fIcon .input-icon:after {
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 3.4em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.row {
+  zoom: 1;
+}
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
+}
+@media only screen and (max-width: 540px) {
+  .col-half {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+
+
+</style>
+    </head>
+    
+    <body>
+        <div class="form">
+            <h1>Create New User
+            <div>Join Home Smart Home <i class="fa fa-heart-o" style="font-size:15px"></i></div></h1>
+              <form  action="" method="post" role="form">
+                  {{ form.csrf }}
+                  <div class="form-group">                        
+                <div class="part"><span>1</span>User Personal Information</div>
+                <div class="inner-container">
+                  <div class="row">
+                        <div class="col" >
+                               <div class="gp-field fIcon" style="width:48%; float:left;">
+                                 <input type="text" placeholder="First Name" id="FName" name="FName" for="FName"/>
+                                   <div class="input-icon"><i class="fa fa-user"></i></div>
+                               </div>
+                                <div class="gp-field fIcon" style="width:48%; float:left; margin-left:4%;">
+                                  <input type="text"  id="LName" name="LName" placeholder="Last Name" for="LName"/>
+                                   <div class="input-icon"><i class="fa fa-user"></i></div>
+                               </div>
+                        </div> <!-- end col-->
+                            <br><br><br><br>
+                <!-- <div class="row"> -->
+                  <div class="gp-field fIcon" style="margin-top:-20px;">
+                    <input type="text" placeholder="Emergency Contact" id="EmergencyPhone" name="EmergencyPhone" for="EmergencyPhone"/>
+                    <div class="input-icon"><i class="fa fa-phone-square"></i></div>
+                  <!-- </div> -->
+            
+                  <div class="gp-field" style="margin-top:8px;">
+                    <input type="radio" name="Gender" value="Male" id="male" checked="true"/>
+                    <label for="male"><span><i class="fa fa-male"></i>Male</span></label>
+                    <input type="radio" name="Gender" value="Female" id="female"/>
+                    <label for="female"> <span><i class="fa fa-female"></i>Female</span></label>
+                  </div>
+                  </div>
+                  </div> <!--end row-->
+            
+                </div>  <!--inner group-->
+                <div class="part"><span>2</span>Email Address &amp; Phone Number</div>
+                <div class="inner-container">
+                <div class="row">
+                  <div class="gp-field fIcon">
+                
+                    <input type="email" placeholder="Email Adress"  id="Email" name="Email" for="Email"/>
+                    <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                  </div>
+            
+                </div>
+            
+            
+                </div>
+            
+        <div class="part"><span>3</span>User Name &amp; Password</div>
+            <div class="inner-container">
+                <div class="row">
+                
+                   <div class="gp-field fIcon" >
+                    <input type="text" placeholder="Username"  id="Username" name="Username" for="Username"/>
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                  </div>
+            
+                  <div class="gp-field fIcon">
+                    <input type="password" placeholder="Password" id="Password" name="Password"  for="Password"/>
+                    <div class="input-icon"><i class="fa fa-key"></i></div>
+                  </div>
+            
+            
+                </div> <!--end row-->
+                </div>  <!--end inner container-->
+            <div class="button-part" >
+              <input type="submit" name="Sign Up" style="height:50px;"/>
+             </div>
+             </div>
+            </form> 
+        </div>
+  <br>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+
+{% for message in messages %}
+  {% if "Error" not in message[1]: %}
+      <div class="alert alert-info">
+      <strong>Success! </strong> {{ message[1] }}
+      </div>
+  {% endif %}
+
+  {% if "Error" in message[1]: %}
+      <div class="alert alert-warning">
+      {{ message[1] }}
+      </div>
+  {% endif %}
+{% endfor %}
+  {% endif %}
+{% endwith %}
+
+ 
+</div>
+<br>            
+</div>
+</div>
+</body>
+</html>

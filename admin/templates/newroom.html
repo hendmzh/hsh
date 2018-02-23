@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Room Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    
+    <style>
+    
+    
+    /*//////////////////////////////////////////////////////////////////
+    [ FONT ]*/
+    
+    @font-face {
+      font-family: Poppins-Regular;
+      src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Poppins-Medium;
+      src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Poppins-Bold;
+      src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Poppins-SemiBold;
+      src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Montserrat-Bold;
+      src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
+    }
+    
+    
+    /*//////////////////////////////////////////////////////////////////
+    [ RESTYLE TAG ]*/
+    
+    * {
+        margin: 0px; 
+        padding: 0px; 
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        height: 100%;
+        font-family: Poppins-Regular, sans-serif;
+    }
+    
+    /*---------------------------------------------*/
+    a {
+        font-family: Poppins-Regular;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #666666;
+        margin: 0px;
+        transition: all 0.4s;
+    }
+    
+    a:focus {
+        outline: none !important;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    /*---------------------------------------------*/
+    h1,h2,h3,h4,h5,h6 {
+        margin: 0px;
+    }
+    
+    p {
+        font-family: Poppins-Regular;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #666666;
+        margin: 0px;
+    }
+    
+    ul, li {
+        margin: 0px;
+        list-style-type: none;
+    }
+    
+    
+    /*---------------------------------------------*/
+    input {
+        outline: none;
+        border: none;
+    }
+    
+    
+    /*---------------------------------------------*/
+    
+    button:hover {
+        cursor: pointer;
+    }
+    
+    .container-contact100 {
+      width: 100%;  
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      background: #f2f2f2;  
+      background: -moz-linear-gradient(-45deg, #f7cac9 0%, #92a8d1 100%);
+    }
+    
+    .wrap-contact100 {
+      width: 1120px;
+      background: #fff;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+    /*   flip image and text */
+      flex-wrap: wrap;
+      align-items: stretch;
+      flex-direction: row-reverse;
+    
+    }
+    
+    /*==================================================================
+    [ Contact more ]*/
+    .contact100-more {
+      width: 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      padding: 30px 15px 0px 15px;
+    }
+    
+    
+    
+    
+    /*==================================================================
+    [ Form ]*/
+    
+    .contact100-form {
+      width: 50%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 56px 55px 63px 55px;
+    }
+    
+    .contact100-form-title {
+      width: 100%;
+      display: block;
+      font-family: Poppins-Regular;
+      font-size: 30px;
+    /*   color: #333333; */
+      color:deepskyblue;
+      line-height: 1.2;
+      text-align: center;
+      padding-bottom: 33px;
+    }
+    
+    
+    
+    /*------------------------------------------------------------------
+    [ Input ]*/
+    
+    .wrap-input100 {
+      width: 100%;
+      position: relative;
+      border: 1px solid #e6e6e6;
+    }
+    
+    
+    
+    .label-input100 {
+      font-family: Poppins-Regular;
+      font-size: 12px;
+      color: #555555;
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 55px;
+      border: 1px solid #e6e6e6;
+      border-bottom: none; 
+      padding: 10px 25px;
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+    
+    .input100 {
+      display: block;
+      width: 100%;
+      background: transparent;
+      font-family: Poppins-Regular;
+      font-size: 18px;
+      color: #666666;
+      line-height: 1.2;
+      padding: 0 25px;
+    }
+    
+    input.input100 {
+      height: 55px;
+    }
+    
+    
+    
+    /*---------------------------------------------*/
+    
+    .focus-input100 {
+      position: absolute;
+      display: block;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      top: -1px;
+      left: -1px;
+      pointer-events: none;
+      border: 1px solid lightpink;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.4s;
+      transform: scaleX(1.1) scaleY(1.3);
+    }
+    
+    .input100:focus + .focus-input100 {
+      visibility: visible;
+      opacity: 1;
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+    
+    
+    
+    /*------------------------------------------------------------------
+    [ Button ]*/
+    .container-contact100-form-btn {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 23px;
+    }
+    
+    .contact100-form-btn {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      min-width: 200px;
+      height: 50px;
+      border-radius: 2px;
+      background: #5B53D2 ;
+    
+      font-family: Montserrat-Bold;
+      font-size: 12px;
+      color: #fff;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    
+      transition: all 0.4s;
+    }
+    
+    .contact100-form-btn:hover {
+      background: #333333;
+    }
+    
+    
+    
+    /*------------------------------------------------------------------
+    [ Responsive ]*/
+    
+    @media (max-width: 992px) {
+      .contact100-form {
+        width: 60%;
+        padding: 56px 30px 63px 30px;
+      }
+    
+      .contact100-more {
+        width: 40%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .contact100-form {
+        width: 100%;
+      }
+    
+      .contact100-more {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .contact100-form {
+        padding: 56px 15px 63px 15px;
+      }
+    
+      .rs1-wrap-input100,
+      .rs2-wrap-input100 {
+        width: 100%;
+      }
+    
+      .rs2-wrap-input100 {
+        border-left: 1px solid #e6e6e6;
+        border-top: none;
+      }
+    }
+    
+    
+    /* ------------------------------------------------------------------ */
+    @media (max-width: 992px) {
+      .alert-validate::before {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    
+    
+    /*//////////////////////////////////////////////////////////////////
+    [ FONT ]*/
+    
+    @font-face {
+      font-family: Poppins-Regular;
+      src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Poppins-Medium;
+      src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Poppins-Bold;
+      src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Poppins-SemiBold;
+      src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+    }
+    
+    @font-face {
+      font-family: Montserrat-Bold;
+      src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
+    }
+    
+    
+    /*//////////////////////////////////////////////////////////////////
+    [ RESTYLE TAG ]*/
+    
+    * {
+        margin: 0px; 
+        padding: 0px; 
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        height: 100%;
+        font-family: Poppins-Regular, sans-serif;
+    }
+    
+    /*---------------------------------------------*/
+    a {
+        font-family: Poppins-Regular;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #666666;
+        margin: 0px;
+        transition: all 0.4s;
+    }
+    
+    a:focus {
+        outline: none !important;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    /*---------------------------------------------*/
+    h1,h2,h3,h4,h5,h6 {
+        margin: 0px;
+    }
+    
+    p {
+        font-family: Poppins-Regular;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #666666;
+        margin: 0px;
+    }
+    
+    ul, li {
+        margin: 0px;
+        list-style-type: none;
+    }
+    
+    
+    /*---------------------------------------------*/
+    input {
+        outline: none;
+        border: none;
+    }
+    
+    
+    /*---------------------------------------------*/
+    
+    button:hover {
+        cursor: pointer;
+    }
+    
+    .container-contact100 {
+      width: 100%;  
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      background: #f2f2f2;  
+      background: -moz-linear-gradient(-45deg, #f7cac9 0%, #92a8d1 100%);
+    }
+    
+    .wrap-contact100 {
+      width: 1120px;
+      background: #fff;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+    /*   flip image and text */
+      flex-wrap: wrap;
+      align-items: stretch;
+      flex-direction: row-reverse;
+    
+    }
+    
+    /*==================================================================
+    [ Contact more ]*/
+    .contact100-more {
+      width: 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      padding: 30px 15px 0px 15px;
+    }
+    
+    
+    
+    
+    /*==================================================================
+    [ Form ]*/
+    
+    .contact100-form {
+      width: 50%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 56px 55px 63px 55px;
+    }
+    
+    .contact100-form-title {
+      width: 100%;
+      display: block;
+      font-family: Poppins-Regular;
+      font-size: 30px;
+    /*   color: #333333; */
+      color:deepskyblue;
+      line-height: 1.2;
+      text-align: center;
+      padding-bottom: 33px;
+    }
+    
+    
+    
+    /*------------------------------------------------------------------
+    [ Input ]*/
+    
+    .wrap-input100 {
+      width: 100%;
+      position: relative;
+      border: 1px solid #e6e6e6;
+    }
+    
+    
+    
+    .label-input100 {
+      font-family: Poppins-Regular;
+      font-size: 12px;
+      color: #555555;
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 55px;
+      border: 1px solid #e6e6e6;
+      border-bottom: none; 
+      padding: 10px 25px;
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+    
+    .input100 {
+      display: block;
+      width: 100%;
+      background: transparent;
+      font-family: Poppins-Regular;
+      font-size: 18px;
+      color: #666666;
+      line-height: 1.2;
+      padding: 0 25px;
+    }
+    
+    input.input100 {
+      height: 55px;
+    }
+    
+    
+    
+    /*---------------------------------------------*/
+    
+    .focus-input100 {
+      position: absolute;
+      display: block;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      top: -1px;
+      left: -1px;
+      pointer-events: none;
+      border: 1px solid lightpink;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.4s;
+      transform: scaleX(1.1) scaleY(1.3);
+    }
+    
+    .input100:focus + .focus-input100 {
+      visibility: visible;
+      opacity: 1;
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+    
+    
+    
+    /*------------------------------------------------------------------
+    [ Button ]*/
+    .container-contact100-form-btn {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 23px;
+    }
+    
+    .contact100-form-btn {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      min-width: 200px;
+      height: 50px;
+      border-radius: 2px;
+      background: #5B53D2 ;
+    
+      font-family: Montserrat-Bold;
+      font-size: 12px;
+      color: #fff;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    
+      transition: all 0.4s;
+    }
+    
+    .contact100-form-btn:hover {
+      background: #333333;
+    }
+    
+    
+    
+    /*------------------------------------------------------------------
+    [ Responsive ]*/
+    
+    @media (max-width: 992px) {
+      .contact100-form {
+        width: 60%;
+        padding: 56px 30px 63px 30px;
+      }
+    
+      .contact100-more {
+        width: 40%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .contact100-form {
+        width: 100%;
+      }
+    
+      .contact100-more {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .contact100-form {
+        padding: 56px 15px 63px 15px;
+      }
+    
+      .rs1-wrap-input100,
+      .rs2-wrap-input100 {
+        width: 100%;
+      }
+    
+      .rs2-wrap-input100 {
+        border-left: 1px solid #e6e6e6;
+        border-top: none;
+      }
+    }
+    
+    
+    /* ------------------------------------------------------------------ */
+    @media (max-width: 992px) {
+      .alert-validate::before {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    
+    
+    
+    
+    
+    </style>
+    </head>
+    <body>
+ 
+ 
+            <div class="container-contact100">
+                    <div class="wrap-contact100">
+                        <form class="contact100-form validate-form" action="" method="post" role="form">
+                            {{ form.csrf }}
+                            <span class="contact100-form-title">Add Room to  Smart Home	</span>
+                            <label class="label-input100" for="Name"> Room Name *</label>
+                            <div class="wrap-input100 validate-input" >
+                                <input id="Name" name=Name class="input100" type="text"  placeholder="Eg. Living Room">
+                                <span class="focus-input100"></span>
+                            </div>
+            
+                            <label class="label-input100" for="SensorID"> Sensor ID *</label>
+                            <div class="wrap-input100">
+                                <input id="SensorID" name="SensorID" class="input100" type="text" placeholder="Eg. Beacon's UUID">
+                                <span class="focus-input100"></span>
+                            </div>
+            
+            
+                            <div class="container-contact100-form-btn">
+                                <button class="contact100-form-btn" type="submit">
+                                    Add Room
+                                </button>
+                            </div>
+                        </form>
+                        <div class="contact100-more col-c-m" style="background-image: url('static/images/sh.jpg');">
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+                <div id="dropDownSelect1"></div>
+            
+ 
+  <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+ 
+</div>
+<br>            
+</div>
+</div>
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+
+</body>
+</html>
