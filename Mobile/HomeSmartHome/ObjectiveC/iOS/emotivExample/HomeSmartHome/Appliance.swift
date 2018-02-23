@@ -24,8 +24,8 @@ struct Appliance {
         self.state = state
     }
     
-    static func getCurrentAppliances(){
-        Alamofire.request(GlobalVariables.server+"/appliances").responseJSON { (responseData) -> Void in
+    static func getCurrentAppliances(room: String){
+        Alamofire.request(GlobalVariables.server+"/appliances/"+room).responseJSON { (responseData) -> Void in
                                 if((responseData.result.value) != nil) {
                                     let swiftyJsonVar = JSON(responseData.result.value!)
 
