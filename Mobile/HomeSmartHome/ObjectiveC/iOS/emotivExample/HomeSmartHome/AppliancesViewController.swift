@@ -32,7 +32,7 @@ class AppliancesViewController: UIViewController {
         super.viewDidLoad()
         
         Appliance.getCurrentAppliances(room: "1");
-    Door.getCurrentDoors();
+        Door.getCurrentDoors(room: "1");
         
         
         

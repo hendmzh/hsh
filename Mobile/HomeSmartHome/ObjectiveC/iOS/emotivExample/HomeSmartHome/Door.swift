@@ -13,20 +13,34 @@ struct Door {
     
     let id: Int!
     let state: String!
-    
+    let room: Int!
     
     //MARK: Inits
-    init(id: Int, state: String) {
+    init(id: Int, state: String, room: Int) {
         self.id = id
         self.state = state
+        self.room = room
+        
     }
     
-    static func getCurrentDoors(){
-        Alamofire.request(GlobalVariables.server+"/doors").responseJSON { (responseData) -> Void in
+    static func getCurrentDoors(room: String){
+        
+        var doorList: [Door] = []
+        Alamofire.request(GlobalVariables.server+"/doors/"+room).responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
                 
-                print(swiftyJsonVar)
+               // print(swiftyJsonVar)
+                
+                for (_,dict) in swiftyJsonVar {
+                    let door = Door(id: dict["id"].intValue, state: dict["state"].stringValue, room: dict["room"].intValue)
+                    doorList.append(door)
+                    
+                }
+                //print
+                for object in doorList {
+                    print("ID: \(object.id), STATE: \(object.state)")
+                }
             }
         }
         
