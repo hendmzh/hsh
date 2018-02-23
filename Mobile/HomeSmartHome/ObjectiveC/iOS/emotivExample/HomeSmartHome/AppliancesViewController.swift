@@ -35,7 +35,7 @@ class AppliancesViewController: UIViewController {
         
        
         Appliance.getCurrentAppliances(room: room.roomID);
-        Door.getCurrentDoors(room: room.roomID);
+        Door.getCurrentDoors(room: room.roomID); 
         
         
         
