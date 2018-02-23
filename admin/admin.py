@@ -21,7 +21,7 @@ db_session = DBSession()
 # if your arduino was running on a serial port other than '/dev/ttyACM0/'
 # declare: a = Arduino(serial_port='/dev/ttyXXXX')
 #a = Arduino()
-#time.sleep(3)
+#time.sleep(3) 
 
 # declare the pins we're using
 #LED_PIN = 3
