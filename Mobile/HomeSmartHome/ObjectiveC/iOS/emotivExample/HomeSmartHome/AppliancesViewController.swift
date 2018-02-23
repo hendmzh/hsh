@@ -27,6 +27,8 @@ class AppliancesViewController: UIViewController {
     
     @IBOutlet var currentRoom: UILabel!
     
+    var room: Environment!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

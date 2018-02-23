@@ -24,9 +24,12 @@ extension AppliancesViewController {
                 if(identifiersInRange.contains(identifier)){
                     
                     Environment.getRoom(sensorID: identifier, completion: { (room) in
-                        if(room != ""){
-                        print("in room: "+room)
-                        self.currentRoom.text = "You are inside: "+room
+                        if(room.roomID != ""){
+                        print("in room: "+(room.roomName))
+                        self.currentRoom.text = "You are inside: "+(room.roomName)
+                        }
+                        else{
+                             self.currentRoom.text = "We don't know where you are :("
                         }
                     })
                 }
