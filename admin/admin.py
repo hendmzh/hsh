@@ -226,18 +226,19 @@ def getRoom(sensorid):
 class appliancesList(Resource):
     def get(self,roomID):
         currentAppliances = db_session.query(Appliance).filter(Appliance.RoomID == roomID)
-        return jsonify(Appliances=[e.serialize() for e in currentAppliances])
+        return jsonify([e.serialize() for e in currentAppliances])
 
 
 
 # API for getting doors
 class doorsList(Resource):
-    def get(self):
-        return jsonify(Doors=[e.serialize() for e in db_session.query(Door)])
+    def get(self,roomID):
+        currentDoor = db_session.query(Door).filter(Door.RoomID == roomID)
+        return jsonify([e.serialize() for e in currentDoor])
 
 
 api.add_resource(appliancesList, '/appliances/<roomID>')
-api.add_resource(doorsList, '/doors')
+api.add_resource(doorsList, '/doors/<roomID>')
 
 
 if __name__ == "__main__":
