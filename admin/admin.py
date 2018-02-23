@@ -7,11 +7,15 @@ from forms import UserForm, RoomForm, ApplianceForm
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from flask_restful import reqparse, abort, Api, Resource
+
 app = Flask(__name__)
+api = Api(app)
 engine = create_engine('sqlite:///admin.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 db_session = DBSession()
+
 
 # initialize connection to Arduino
 # if your arduino was running on a serial port other than '/dev/ttyACM0/'
@@ -181,6 +185,13 @@ def new_appliance():
 
     return render_template('newappliance.html', form=form)
 
+@app.route('/admin')
+def page():
+    rooms=db_session.query(Room)
+    appliances=db_session.query(Appliance)
+    doors=db_session.query(Door)
+    return render_template('admin.html', rooms=rooms, appliances=appliances, doors=doors)
+
 
 # API for the user's remote login
 @app.route('/user_login', methods = ['POST'])
@@ -198,20 +209,36 @@ def user_login():
             return jsonify({'error': 'Not found'})
 
 
-# API for the getting a room's list of appliances
-@app.route('/user_login', methods = ['GET'])
-def get_appliances():
-    if not request.json or not 'username' in request.json or not 'password' in request.json:
-        abort(400)
+
+# API for the getting the room name
+@app.route('/rooms/<sensorid>')
+def getRoom(sensorid):
+    currentRoom = db_session.query(Room).filter(Room.SensorID == sensorid).first()
+    if currentRoom:
+        print("Found Room: "+currentRoom.Name)
+        return jsonify({'Room': currentRoom.Name, 'ID': currentRoom.RoomID})
     else:
-        currentUser = db_session.query(User).filter(User.Username==request.json['username'], User.Password==request.json['password']).first()
-        if currentUser:
-            print("user logged in successfully..")
-            dict_user = currentUser.as_dict()
-            return jsonify(dict_user)
-        else:
-            print("wrong user or pass")
-            return jsonify({'error': 'Not found'})
+        print("Room not found")
+        return jsonify({'error': 'Not found'})
+
+
+# API for getting appliances
+class appliancesList(Resource):
+    def get(self,roomID):
+        currentAppliances = db_session.query(Appliance).filter(Appliance.RoomID == roomID)
+        return jsonify(Appliances=[e.serialize() for e in currentAppliances])
+
+
+
+# API for getting doors
+class doorsList(Resource):
+    def get(self):
+        return jsonify(Doors=[e.serialize() for e in db_session.query(Door)])
+
+
+api.add_resource(appliancesList, '/appliances/<roomID>')
+api.add_resource(doorsList, '/doors')
+
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
