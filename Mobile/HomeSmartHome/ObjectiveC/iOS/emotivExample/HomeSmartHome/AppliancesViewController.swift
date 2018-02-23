@@ -33,8 +33,9 @@ class AppliancesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Appliance.getCurrentAppliances(room: "1");
-        Door.getCurrentDoors(room: "1");
+       
+        Appliance.getCurrentAppliances(room: room.roomID);
+        Door.getCurrentDoors(room: room.roomID);
         
         
         

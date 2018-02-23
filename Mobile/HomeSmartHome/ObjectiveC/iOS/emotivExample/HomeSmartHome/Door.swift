@@ -30,7 +30,7 @@ struct Door {
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
                 
-               // print(swiftyJsonVar)
+                // print(swiftyJsonVar)
                 
                 for (_,dict) in swiftyJsonVar {
                     let door = Door(id: dict["id"].intValue, state: dict["state"].stringValue, room: dict["room"].intValue)
@@ -49,3 +49,4 @@ struct Door {
     
     
 }
+

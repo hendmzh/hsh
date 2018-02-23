@@ -414,7 +414,7 @@
 				TargetAttributes = {
 					E9C160361A9DB99B00D2E4F1 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 2CE99B6QZH;
+						DevelopmentTeam = 52JNU2XT66;
 						LastSwiftMigration = 0920;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -721,7 +721,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 2CE99B6QZH;
+				DEVELOPMENT_TEAM = 52JNU2XT66;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -748,7 +748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo.seema;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -781,7 +781,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = 2CE99B6QZH;
+				DEVELOPMENT_TEAM = 52JNU2XT66;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -801,7 +801,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hend.testEmo.seema;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
