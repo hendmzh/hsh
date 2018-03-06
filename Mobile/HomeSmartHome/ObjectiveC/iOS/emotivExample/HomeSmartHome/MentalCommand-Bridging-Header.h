@@ -3,3 +3,4 @@
 //
 
 #import <EstimoteSDK/EstimoteSDK.h>
+#import "McViewController.h"

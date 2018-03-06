@@ -17,7 +17,7 @@ extension ProximityManager {
     fileprivate struct Parameters {
         
         /// Desired distance from a beacon from which enter/exit events should be triggered, in meters.
-        static let desiredDistance = 1.5
+        static let desiredDistance = 0.5
     }
 }
 

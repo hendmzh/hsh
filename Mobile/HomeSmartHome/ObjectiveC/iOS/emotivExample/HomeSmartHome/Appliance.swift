@@ -16,17 +16,19 @@ struct Appliance {
     let name: String!
     let state: String!
     let room: Int!
+    let type: ApplianceType
     
     
     //MARK: Inits
-    init(id: Int, name: String, state: String, room: Int) {
+    init(id: Int, name: String, state: String, room: Int, type: ApplianceType) {
         self.id = id
         self.name = name
         self.state = state
         self.room = room
+        self.type = type
     }
     
-    static func getCurrentAppliances(room: String){
+    static func getCurrentAppliances(room: String, completion: @escaping (_ appliences: [Appliance]) -> ()){
         
         var applianceList: [Appliance] = []
         
@@ -35,25 +37,44 @@ struct Appliance {
             //print(swiftyJsonVar)
             
             for (_,dict) in swiftyJsonVar {
-                let appliance = Appliance(id: dict["id"].intValue, name: dict["name"].stringValue, state: dict["state"].stringValue, room: dict["room"].intValue)
-                applianceList.append(appliance)
                 
+                var appType = ApplianceType.unknown
+                
+                if(dict["name"]=="Light"){
+                   appType = ApplianceType.unknown
+                }
+                else if(dict["name"]=="Televesion"){
+                   appType = ApplianceType.tv
+                }
+                else if(dict["name"]=="Curtain"){
+                    appType = ApplianceType.curtain
+                }
+                else if(dict["name"]=="Oven"){
+                    appType = ApplianceType.oven
+                }
+                else if(dict["name"]=="AC"){
+                    appType = ApplianceType.ac
+                }
+                
+                let appliance = Appliance(id: dict["id"].intValue, name: dict["name"].stringValue, state: dict["state"].stringValue, room: dict["room"].intValue, type: appType)
+                applianceList.append(appliance)
             }
             //print
             for object in applianceList {
                 print("ID: \(object.id), NAME: \(object.name), STATE: \(object.state)")
             }
             
+            completion(applianceList)
+            
             
             }
         }
         
     }
-    
-    
 }
 
+extension Appliance: Equatable { }
 
-
-
-
+func ==(lhs: Appliance, rhs: Appliance) -> Bool {
+    return lhs === rhs // === returns true when both references point to the same object
+}

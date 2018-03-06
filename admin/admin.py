@@ -20,17 +20,17 @@ db_session = DBSession()
 # initialize connection to Arduino
 # if your arduino was running on a serial port other than '/dev/ttyACM0/'
 # declare: a = Arduino(serial_port='/dev/ttyXXXX')
-#a = Arduino()
-#time.sleep(3) 
+a = Arduino()
+time.sleep(3)
 
 # declare the pins we're using
-#LED_PIN = 3
-#ANALOG_PIN = 0
+LED_PIN = 3
+ANALOG_PIN = 0
 
 # initialize the digital pin as output
-#a.set_pin_mode(LED_PIN,'O')
+a.set_pin_mode(LED_PIN,'O')
 
-#print('Arduino initialized')
+print('Arduino initialized')
 
 
 @app.route('/')

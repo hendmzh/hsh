@@ -7,27 +7,44 @@
 //
 
 #import "McViewController.h"
+#import "GlobalData.h"
+#import "MentalCommand-Swift.h"
+#import "MentalCommand-Bridging-Header.h"
 
-@interface McViewController ()
-
-@end
 
 @implementation McViewController
 
+AppConstants *appCons;
+NSString *command;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    engineWidget = [[EngineWidget alloc] init];
+    engineWidget = [GlobalData sharedGlobalData].engineWidget;
+    //engineWidget = [[EngineWidget alloc] init];
     engineWidget.delegate = self;
     
     currentPow = 0.0f;
     currentAct = Mental_Neutral;
     isTraining = false;
+    appCons = [[AppConstants alloc] init];
+    
+
+    
     
     NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateCubePosition) userInfo:nil repeats:YES];
     [timer fire];
     
-    dictionaryAction = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:Mental_Neutral], @"Neutral", [NSNumber numberWithInt:Mental_Push], @"Push", [NSNumber numberWithInt:Mental_Pull], @"Pull", [NSNumber numberWithInt:Mental_Left], @"Left", [NSNumber numberWithInt:Mental_Right], @"Right", [NSNumber numberWithInt:Mental_Lift], @"Lift", [NSNumber numberWithInt:Mental_Drop], @"Drop", nil];
+    dictionaryAction = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:Mental_Neutral], @"Neutral", [NSNumber numberWithInt:Mental_Push], @"Push",[NSNumber numberWithInt:Mental_Right], @"Right", nil];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (id) init{
+    
+    if(self = [super init])
+    {
+        self.globalcommand= command;
+    }
+    return self;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -55,44 +72,49 @@
 }
 
 - (IBAction)clearData:(UIButton *)sender {
+    
     MentalAction_t action = (MentalAction_t)[[dictionaryAction objectForKey:self.btAction.titleLabel.text] integerValue];
     [engineWidget clearTrainingData:action];
+    
 }
 
 -(void) updateCubePosition {
+
     [UIView animateWithDuration:0.2 animations:^{
         float range = currentPow * 4;
         
-        //move cube to left or right direction
-        if((currentAct == Mental_Left || currentAct == Mental_Right) && range > 0)
+        if(currentAct == Mental_Neutral)
         {
-            self.constraintCenterX.constant = currentAct == Mental_Left ? MIN(70, self.constraintCenterX.constant + range) : MAX(-70, self.constraintCenterX.constant - range);
+           // [GlobalData sharedGlobalData].message= @"Neutral";
+           // [appCons commandWithCom:@"Neutral"];
+            
+            command = @"Neutral";
+        }
+        //move cube to left or right direction
+        if((currentAct == Mental_Right) && range > 0)
+        {
+            self.constraintCenterX.constant = MAX(-70, self.constraintCenterX.constant - range);
         }
         else if(self.constraintCenterX.constant != 0)
         {
             self.constraintCenterX.constant = self.constraintCenterX.constant > 0 ? MAX(0, self.constraintCenterX.constant - 4) : MIN(0, self.constraintCenterX.constant + 4);
         }
         
-        //move cube to up or down direction
-        if ((currentAct == Mental_Lift || currentAct == Mental_Drop) && range > 0)
-        {
-            self.constraintCenterY.constant = currentAct == Mental_Lift ? MIN(70, self.constraintCenterY.constant + range) : MAX(-70, self.constraintCenterY.constant - range);
-        }
-        else if(self.constraintCenterY.constant != 0)
-        {
-            self.constraintCenterY.constant = self.constraintCenterY.constant > 0 ? MAX(0, self.constraintCenterY.constant - 4) : MIN(0, self.constraintCenterY.constant + 4);
-        }
-        
         //move cube to forward or backward direction
-        if ((currentAct == Mental_Pull || currentAct == Mental_Push) && range > 0)
+        if ((currentAct == Mental_Push) && range > 0)
         {
-            self.viewCube.transform = currentAct == Mental_Push ? CGAffineTransformScale(CGAffineTransformIdentity, MAX(0.3, self.viewCube.transform.a - currentPow/4), MAX(0.3, self.viewCube.transform.d - currentPow/4)) : CGAffineTransformScale(CGAffineTransformIdentity, MIN(2.3, self.viewCube.transform.a + currentPow/4), MIN(2.3, self.viewCube.transform.d + currentPow/4));
+            //[GlobalData sharedGlobalData].message= @"push";
+            //[appCons commandWithCom:@"Neutral"];
+            command = @"push";
+            
+            self.viewCube.transform = CGAffineTransformScale(CGAffineTransformIdentity, MAX(0.3, self.viewCube.transform.a - currentPow/4), MAX(0.3, self.viewCube.transform.d - currentPow/4));
         }
         else if (self.viewCube.transform.a != 1)
         {
             float scale = self.viewCube.transform.a < 1 ? 0.05 : -0.05;
             self.viewCube.transform = CGAffineTransformScale(CGAffineTransformIdentity, MAX(1, self.viewCube.transform.a + scale), MAX(1, self.viewCube.transform.d + scale));
         }
+        
     }];
 }
 
@@ -124,7 +146,7 @@
     [self.btAction setTitle:[[dictionaryAction allKeys] objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     
     MentalAction_t action = (MentalAction_t)[[dictionaryAction objectForKey:[[dictionaryAction allKeys] objectAtIndex:indexPath.row]] integerValue];
-
+    
     [self.labelSkillRating setText:[NSString stringWithFormat:@"SkillRating: %d%%", [engineWidget getSkillRating:action]]];
 }
 

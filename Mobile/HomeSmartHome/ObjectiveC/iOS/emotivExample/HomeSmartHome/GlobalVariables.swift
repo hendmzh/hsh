@@ -8,6 +8,14 @@
 import Foundation
 
 struct GlobalVariables {
-    static var serverip = "192.168.11.107"
-    static var server = "http://192.168.11.107/:5000"
+    static var serverip = "172.20.10.5"
+    static var server = "http://172.20.10.5:5000"
+    static var userInfo = User.init(username: "")
+    public static var command = "Blank"
+}
+
+@objc(AppConstants) class AppConstant: NSObject{
+    @objc func command(com: String){
+        GlobalVariables.command = com
+    }
 }

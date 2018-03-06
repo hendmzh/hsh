@@ -13,8 +13,8 @@ import UIKit
 @available(iOS 9.0, *)
 @available(iOS 9.0, *)
 class AppliancesViewController: UIViewController {
-
     
+
     let beaconIdentifiers = ["d3377fb34c3c9928e623aa8809311b0c",
                              "d9d524b803fbd5529806f86571fc6211",
                              "ea249cfc85470f8ab8af63922a546f2e"]
@@ -28,17 +28,17 @@ class AppliancesViewController: UIViewController {
     @IBOutlet var currentRoom: UILabel!
     
     var room: Environment!
+    var appsArray: [Appliance]!
     
+    // this variable decides which segue (if we get its type: selectedApp.type == door or any other?)
+    var selectedApp: Appliance!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        Appliance.getCurrentAppliances(room: room.roomID);
-        Door.getCurrentDoors(room: room.roomID); 
-        
-        
-        
+        self.navigationItem.title = "Appliances"
+        appsArray = []
+
         self.proximityManager.requestAuthorization()
         self.updateBeaconZoneViews(beaconIdentifiersInRange: [])
         
@@ -54,6 +54,25 @@ class AppliancesViewController: UIViewController {
                 self.addBeaconZoneViews(colorByBeaconIdentifier: colorByIdentifier)
                 self.proximityManager.delegate = self
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "doorSegue"{
+            
+            let doorVC = segue.destination as? ControlDoorViewController
+
+                doorVC?.currentDoor = self.selectedApp //Or pass any
+            
+        }
+        
+        
+        if segue.identifier == "ApplianceSegue"{
+            
+            let appVC = segue.destination as? ControlApplianceViewController
+            
+            appVC?.currentAppliance = self.selectedApp //Or pass any
+            
         }
     }
 }
@@ -88,6 +107,106 @@ extension AppliancesViewController: ProximityManagerDelegate, ESTMonitoringV2Man
     
     func monitoringManager(_ manager: ESTMonitoringV2Manager, didFailWithError error: Error) {
         print("Manager did fail with error: \(error.localizedDescription)")
+    }
+    
+    
+    private func animate(views: [UIView], duration: TimeInterval, intervalDelay: TimeInterval) {
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            print("COMPLETED A CIRCLE")
+        }
+        
+        var delay: TimeInterval = 0.0
+        let interval = duration / TimeInterval(views.count)
+        
+        for view in views {
+            
+            let index = views.index(where: {$0 === view})
+
+            selectedApp = appsArray[index!]
+            
+            let transform = view.transform
+            
+            UIView.animate(withDuration: interval, delay: delay, options: [.curveEaseIn], animations: {
+                
+                view.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+                
+            }, completion: { (finished) in
+                
+                UIView.animate(withDuration: interval, delay: 0.0, options: [.curveEaseIn], animations: {
+                    view.transform = transform
+                    
+                }, completion: { (finished) in
+                    
+                    
+                })
+            })
+            
+            delay += (interval * 2.0) + intervalDelay
+        }
+        CATransaction.commit()
+    }
+    
+    func createAppliancesViews(appliances: [Appliance]){
+        
+        let size = appliances.count
+        print("apps num : ")
+        print(size)
+        
+        var apps: [UIImage] = []
+
+        for object in appliances {
+            
+            self.appsArray.append(object)
+            
+            if(object.name == "Light"){
+                print("appended light")
+                apps.append(UIImage(named: "light.png")!)
+            }
+            else if(object.name == "Television"){
+                print("appended tv")
+                apps.append(UIImage(named: "tv.png")!)
+            }
+            else if(object.name == "Curtain"){
+                print("appended Curtain")
+                apps.append(UIImage(named: "curtain.png")!)
+            }
+            else if(object.name == "Oven"){
+                print("appended oven")
+                apps.append(UIImage(named: "oven.png")!)
+            }
+        }
+        
+        
+        func makeView(index: Int) -> UIImageView {
+            let view = UIImageView()
+            view.image = apps[index]
+            view.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
+            self.view.addSubview(view)
+            return view
+        }
+        
+        var imageViews = [UIImageView]()
+        
+        for i in 0...size-1 {
+            imageViews.append(makeView(index: i))
+        }
+        
+        
+        let locationForView = { (angle: CGFloat, center: CGPoint, radius: CGFloat) -> CGPoint in
+            let angle = angle * CGFloat.pi / 180.0
+            return CGPoint(x: center.x - radius * cos(angle), y: center.y + radius * sin(angle))
+        }
+        
+        for i in 0..<imageViews.count {
+            let center = self.view.center
+            let radius = ((150.0 + imageViews[i].bounds.size.width) / 2.0)
+            let count = imageViews.count
+            imageViews[i].center = locationForView(((360.0 / CGFloat(count)) * CGFloat(i)) + 90.0, center, radius)
+        }
+        
+          self.animate(views: imageViews.reversed(), duration: 7.0, intervalDelay: 0.5)        
     }
 
 }

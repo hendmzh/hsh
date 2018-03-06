@@ -19,14 +19,27 @@ extension AppliancesViewController {
                 
                 if(identifiersInRange.isEmpty){
                     self.currentRoom.text = "We don't know where you are :("
+                    print("no found beacons")
                 }
                 
                 if(identifiersInRange.contains(identifier)){
-                    
+                    print("found beacon")
                     Environment.getRoom(sensorID: identifier, completion: { (room) in
                         if(room.roomID != ""){
                         print("in room: "+(room.roomName))
                         self.currentRoom.text = "You are inside: "+(room.roomName)
+                            
+                            
+                            Appliance.getCurrentAppliances(room: room.roomID, completion: {
+                                (appliances) in
+                               
+                                self.createAppliancesViews(appliances: appliances)
+                                
+                            })
+                            
+                            
+                            
+                        Door.getCurrentDoors(room: room.roomID);
                         }
                         else{
                              self.currentRoom.text = "We don't know where you are :("

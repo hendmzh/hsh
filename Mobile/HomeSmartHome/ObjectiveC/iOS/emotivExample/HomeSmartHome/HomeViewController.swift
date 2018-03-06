@@ -12,6 +12,11 @@ class HomeViewController: UIViewController {
     
     var userInfo: User!
     
+    var timer = Timer()
+    var timer2 = Timer()
+    var MCV: McViewController!
+    var pushed:Bool!
+    
     @IBOutlet var welcome: UILabel!
     @IBOutlet var profileView: UIView!
     @IBOutlet var fullname: UILabel!
@@ -20,19 +25,74 @@ class HomeViewController: UIViewController {
     @IBOutlet var email: UILabel!
     
     @IBOutlet var call: UIButton!
+    @IBOutlet var Environment: UIButton!
+    
+    var callSelected:Bool!
+    var EnvironmentSelected:Bool!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileView.layer.cornerRadius = 5
-        welcome.text="Welcome, "+userInfo.first
+       
+        //userInfo = GlobalVariables.userInfo
+        //profileView.layer.cornerRadius = 5
+       // welcome.text="Welcome, "+userInfo.first
         // Do any additional setup after loading the view.
-        fullname.text=userInfo.first + " "+userInfo.last
+        //fullname.text=userInfo.first + " "+userInfo.last
         
-        gender.text=userInfo.gender
-        emergencyNum.text=userInfo.contact
-        email.text=userInfo.email
+        //gender.text=userInfo.gender
+        //emergencyNum.text=userInfo.contact
+        //email.text=userInfo.email
+        
+        pushed = false
+        callSelected = false
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.updateVal), userInfo: nil, repeats: true)
+        timer.fire()
+        
+        timer2 = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.NavigateButtons), userInfo: nil, repeats: true)
+        
+        timer2.fire()
+        
     }
     
+        
+
+    @objc
+    func updateVal()
+    {
+        
+        self.MCV = McViewController()
+        if(MCV.globalcommand == "push" && !pushed)
+        {
+            pushed = true
+            self.performSegue(withIdentifier: "EnvironmentSeque", sender: self)
+        }
+        
+        print(MCV.globalcommand)
+        //print(GlobalVariables.command)
+
+        }
+    
+    @objc
+    func NavigateButtons()
+    {
+        
+       if(!callSelected)
+       {
+        //highlight call image
+        let image = UIImage(named: "light") as! UIImage
+        call.setBackgroundImage(image, for: UIControlState.normal)
+        callSelected = true
+        }
+        else if(callSelected)
+       {
+        //highlight environment image
+        let image = UIImage(named: "light") as! UIImage
+        Environment.setBackgroundImage(image, for: UIControlState.normal)
+        callSelected = false
+        }
+    }
 
     @IBAction func makeAPhoneCall() {
         if let url = URL(string: "tel://"+userInfo.contact), UIApplication.shared.canOpenURL(url) {
@@ -42,9 +102,7 @@ class HomeViewController: UIViewController {
                 UIApplication.shared.openURL(url)
             }
         }
-        
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "EngineWidget.h"
 
+@class AppConstants;
+
 @interface McViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, EngineWidgetDelegate, UIAlertViewDelegate>
 {
     BOOL isTraining;
@@ -21,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewPowerBar;
 @property (weak, nonatomic) IBOutlet UIView *viewPower;
 @property (weak, nonatomic) IBOutlet UIView *viewCube;
+@property(weak,nonatomic) NSString *globalcommand;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelSkillRating;
 

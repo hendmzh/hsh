@@ -23,7 +23,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         self.password.delegate = self;
         self.password.delegate = self;
         self.loginBtn.layer.cornerRadius = 5
@@ -36,7 +35,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func login(_ sender: Any) {
         User.Login(user: username.text!, pass: password.text!){
@@ -47,18 +45,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             else{
 
                 self.userLogged = user
+                GlobalVariables.userInfo = user
                 self.performSegue(withIdentifier: "homeSegue", sender: self)
+                //self.performSegue(withIdentifier: "headsetSegue", sender: self)
             }
         }
     
     }
     
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeSegue"{
