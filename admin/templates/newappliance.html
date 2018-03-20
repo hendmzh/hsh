@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Add Appliance/Door</title>
+	        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" href="https://production-assets.codepen.io/assets/global/global-MQ-efb9341bb0d72251dbbeb4b345f866c4114c70ca998ae92c22dcc1c0bd5f0ca7.css" />
+<link rel="stylesheet" media="screen" href="https://production-assets.codepen.io/assets/accounts/form-b513a0e85a7ab3559f0087dab0b041901476310228a475775b68d8673b5360ca.css" />
+<link rel="stylesheet" media="screen" href="https://production-assets.codepen.io/assets/jobs/jobs-f3f40c3f3b14c28b98d8f1f19090ca7184f8fff6f69c146e2d10d66d47ab7e80.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" media="screen" href="https://production-assets.codepen.io/assets/jobs/jobs-f3f40c3f3b14c28b98d8f1f19090ca7184f8fff6f69c146e2d10d66d47ab7e80.css" />
+<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script> 
+<!-- <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script> -->
+<!-- <script src="/static/js/jq.js" type="text/javascript"></script> -->
+
+
+
+
+<style>
+/** Slick Light Style **/
+.cusDD_slick_l {
+  position: relative;
+  width: 200px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+  text-indent: 20px;
+  color: #808080;
+}
+
+.cusDD_slick_l .cusDD_select {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #c0c0c0;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  z-index: 0;
+}
+.cusDD_slick_l .cusDD_arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: url("http://skyscrapercenter.com/img/chevron-down.png") no-repeat;
+  background-size: 60% auto;
+  background-position: 50% 50%;
+}
+.cusDD_slick_l .cusDD_arrow.active {
+  background: url("http://skyscrapercenter.com/img/chevron-down.png") no-repeat;
+  background-size: 60% auto;
+  background-position: 50% 50%;
+}
+
+.cusDD_slick_l .cusDD_options {
+  background: rgba(255, 255, 255, 0.4);
+  border-left: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
+.cusDD_slick_l .cusDD_opt {
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  display: block;
+  position: relative;
+  transition: 300ms;
+  overflow: hidden;
+}
+.cusDD_slick_l .cusDD_opt:before {
+  content: "";
+  z-index: -1;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -320px;
+  height: inherit;
+  width: 300px;
+  transform: skew(-30deg);
+  background: rgba(220, 220, 220, 0.4);
+  transition: 300ms;
+}
+.cusDD_slick_l .cusDD_opt:hover:before {
+  transform: skew(-30deg) translateX(300px);
+}
+
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: Poppins-Regular, sans-serif;
+}
+
+/*---------------------------------------------*/
+a {
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #57b846;
+}
+
+/*---------------------------------------------*/
+h1,h2,h3,h4,h5,h6 {
+	margin: 0px;
+}
+
+p {
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+}
+
+ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+
+
+/*---------------------------------------------*/
+input {
+	outline: none;
+	border: none;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
+
+textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; }
+textarea:focus::-moz-placeholder { color:transparent; }
+textarea:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: #999999; }
+input:-moz-placeholder { color: #999999; }
+input::-moz-placeholder { color: #999999; }
+input:-ms-input-placeholder { color: #999999; }
+
+textarea::-webkit-input-placeholder { color: #999999; }
+textarea:-moz-placeholder { color: #999999; }
+textarea::-moz-placeholder { color: #999999; }
+textarea:-ms-input-placeholder { color: #999999; }
+
+/*---------------------------------------------*/
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+iframe {
+	border: none !important;
+}
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Contact 2 ]*/
+.bg-contact2 {
+  width: 100%;  
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.container-contact2 {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: rgba(219,21,99,0.8);
+}
+
+.wrap-contact2 {
+  width: 790px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 72px 55px 90px 55px;
+}
+
+
+/*------------------------------------------------------------------
+[  ]*/
+
+.contact2-form {
+  width: 100%;
+}
+
+.formTitle {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 39px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 90px;
+}
+
+
+
+/*------------------------------------------------------------------
+[  ]*/
+
+.wrap-input2 {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 37px;
+}
+
+.input2 {
+  display: block;
+  width: 100%;
+
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.2;
+}
+
+.focus-input2 {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.focus-input2::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  transition: all 0.4s;
+  background: rgba(219,21,99,1);
+}
+
+.focus-input2::after {
+  content: attr(data-placeholder);
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0;
+
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  color: #999999;
+  line-height: 1.2;
+  transition: all 0.4s;
+}
+
+/*---------------------------------------------*/
+input.input2 {
+  height: 45px;
+}
+
+input.input2 + .focus-input2::after {
+  top: 16px;
+  left: 0;
+}
+
+textarea.input2 {
+  min-height: 115px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+textarea.input2 + .focus-input2::after {
+  top: 16px;
+  left: 0;
+}
+
+.input2:focus + .focus-input2::after {
+  top: -13px;
+}
+
+.input2:focus + .focus-input2::before {
+  width: 100%;
+}
+
+.has-val.input2 + .focus-input2::after {
+  top: -13px;
+}
+
+.has-val.input2 + .focus-input2::before {
+  width: 100%;
+}
+
+/*------------------------------------------------------------------
+[ Button ]*/
+.container-formBTN {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 13px;
+}
+
+.wrap-formBTN {
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 2px;
+  width: auto;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.contact2-form-bgbtn {
+  position: absolute;
+  z-index: -1;
+  width: 300%;
+  height: 100%;
+  background: rgba(219,21,99,1);
+  background: linear-gradient(-135deg, #d5007d, #e53935, #d5007d, #e53935);
+  top: 0;
+  left: -100%;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.formBTN {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 244px;
+  height: 50px;
+
+ 
+
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  
+
+}
+
+.wrap-formBTN:hover .contact2-form-bgbtn {
+  left: 0;
+}
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+@media (max-width: 576px) {
+  .wrap-contact2 {
+    padding: 72px 15px 90px 15px;
+  }
+}
+
+
+
+/*------------------------------------------------------------------
+[ Alert validate ]*/
+
+.validate-input {
+  position: relative;
+}
+
+.alert-validate::before {
+  content: attr(data-validate);
+  position: absolute;
+  max-width: 70%;
+  background-color: white;
+  border: 1px solid #c80000;
+  border-radius: 2px;
+  padding: 4px 25px 4px 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 0px;
+  pointer-events: none;
+
+  font-family: Poppins-Regular;
+  color: #c80000;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+
+  visibility: hidden;
+  opacity: 0;
+
+  -webkit-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+
+.alert-validate::after {
+  content: "\f12a";
+  font-family: FontAwesome;
+  display: block;
+  position: absolute;
+  color: #c80000;
+  font-size: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 8px;
+}
+
+.alert-validate:hover:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .alert-validate::before {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+
+
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+
+
+
+
+
+//////////////////////////////////////////////////////////////////
+[ Contact 2 ].bg-contact2 {
+  width: 100%;    background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.container-contact2 {
+  width: 100%;  
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+/*   padding: 15px; */
+  background: rgba(220,220,220,0);
+}
+
+.wrap-contact2 {
+  width: 790px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 52px 55px 10px 65px;
+}
+
+
+/*------------------------------------------------------------------
+[  ]*/
+
+.contact2-form {
+  width: 100%;
+}
+
+.formTitle {
+  display: block;
+ font-family: 'Pacifico', cursive;
+  font-size: 39px;
+  margin-top:-40px;
+  color: lightblue;
+padding-top:-30px;
+  line-height: 1.2;
+  text-align: center;
+/*   padding-bottom: 90px; */
+}
+
+
+
+/*------------------------------------------------------------------
+[  ]*/
+
+/*------------------------------------------------------------------
+[ Button ]*/
+.container-formBTN {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+/*   padding-top: 13px; */
+}
+
+.wrap-formBTN {
+  display: block;
+/*   position: relative; */
+  z-index: 1;
+  border-radius: 2px;
+  width: auto;
+  overflow: hidden;
+/*   margin: 0 auto; */
+}
+
+.contact2-form-bgbtn {
+  position: absolute;
+  z-index: -1;
+  width: 300%;
+  height: 100%;
+  background: lightgray;
+  box-shadow:2px 2px 2px 0px lightblue;
+/*   top: 0; */
+/*   left: -100%; */
+  transition: all 0.4s;
+}
+
+.formBTN {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+/*   padding: 0 20px; */
+  min-width: 244px;
+/*   height: 50px; */
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.wrap-formBTN:hover .contact2-form-bgbtn {
+  left: 0;
+}
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+@media (max-width: 576px) {
+  .wrap-contact2 {
+/*     padding: 72px 15px 90px 15px; */
+  }
+}
+
+
+
+@media (max-width: 992px) {
+  .alert-validate::before {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+form {
+	margin: 40px 0;
+}
+
+div {
+	clear: both;
+}
+
+label {
+  width: 200px;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4
+}
+
+/* hide input */
+input.radio:empty {
+	margin-left: -999px;
+}
+
+/* style label */
+input.radio:empty ~ label {
+	position: relative;
+	float: left;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	margin-top: 2em;
+	cursor: pointer;
+	user-select: none;
+}
+
+input.radio:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2.5em;
+	background: #D1D3D4;
+	border-radius: 3px 0 0 3px;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #C2C2C2;
+}
+
+input.radio:hover:not(:checked) ~ label {
+	color: #888;
+}
+
+/* toggle on */
+input.radio:checked ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: white;
+	background-color: lightblue;
+}
+
+input.radio:checked ~ label {
+	color: #777;
+}
+
+/* radio focus */
+input.radio:focus ~ label:before {
+	box-shadow: 0 0 0 3px #999;
+}
+
+#fixedbutton {
+    position: fixed;
+    bottom: 60px;
+    right: 10px; 
+    width:5%;
+    height:5%;
+}
+
+.Messgae{
+background-color:pink;
+height:10%;
+position:relative;
+width:100%;
+color:white;
+font-size:23px;
+text-align:center;
+padding-top:1%;
+font-family: Poppins-Bold;
+}
+</style>
+</head>
+<body>
+
+
+
+                
+
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans|Pacifico' rel='stylesheet' type='text/css'>
+
+	<div class="bg-contact2" style=" background: url('https://static.tumblr.com/3029b4d9b205bad97eb210b3725bb329/xk2mmfq/5fWn3hnc3/tumblr_static_3119999-545079-abstract-light-blue-hand-drawn-pattern-waves-background-seamless-pattern-can-be-used-for-wallpaper-pattern-fills-web-page-background-surface-textures.jpg') repeat;
+  background-size: auto;">
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+        
+            {% for message in messages %}
+                {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                    <strong>Success! </strong> {{ message[1] }}
+                    </div>
+                    {% endif %}
+        
+                {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                    {{ message[1] }}
+                    </div>
+                    {% endif %}
+            {% endfor %}
+                {% endif %}
+            {% endwith %}
+		<div class="container-contact2">
+		
+			<div class="wrap-contact2">
+				<form class="contact2-form validate-form" action="" method="post" role="form">
+								    {{ form.csrf }}
+
+					<span class="formTitle" style="font-size:45px;">
+					<img src="/static/images/shb.png" alt="smartHome" style="width:50px;height:50px;opacity:0.8;">
+						Add To Environment 
+					<img src="/static/images/shb.png" alt="smartHome" style="width:50px;height:50px;opacity:0.8;">
+
+					</span>
+
+
+
+
+
+<div style="margin-top:-10%; display: flex; justify-content: center;">
+<span style="float:left;">
+<input required="required" type="radio" name="Type" id="Type" class="show-control radio"value="Appliance"  />
+<label for="Type">Appliance</label><br><br><br>
+        <div id="div-featured_text" class="show-if-active featured_text" style="margin-left:-8%">
+      	<select  name="Name"  id="Name" class="s3 cusDD_slick_l" style="height:40px;">
+      	<option value="Light">Light</option>
+      	<option value="Air Conditioner">Air Conditioner</option>
+      	<option value="Television">Television</option>
+      	<option value="Curtain">Curtain</option>
+      	<option value="Oven">Oven</option>
+</select>
+</div> 
+</span>
+
+<span>&nbsp;</span>
+
+<span style="float:left;margin-left:1%; ">
+<input required="required" type="radio" name="Type" id="Type2" class="show-control radio" vlaue="Door"/>
+<label for="Type2">Door</label>
+</span>
+</div>
+
+
+
+<div id="div-title" class="error-wrap title" style="margin-top:10%;">
+<!-- <div id="div-title" class="error-wrap title" style="margin-top:10%;  padding-bottom: -50px;"> -->
+
+<div></div>			
+<span for="Rooms"  style="font-size:50px;display: block;font-family: 'Pacifico', cursive; color: lightblue;
+  text-align: center;"> In Room </span>
+<div  style="display: flex; justify-content: center;"> 
+<select id="Rooms" name="Rooms" class="s4 cusDD_slick_l" style="height:40px;">
+ {% for id,name in form.Rooms.choices %} 
+    <option name="Rooms" value="{{ id }}">{{ name }}</option>
+     {% endfor %} 
+</select>
+</div>
+</div>
+
+
+
+
+<br><br><br><br>
+
+
+					<div class="container-formBTN">
+						<div class="wrap-formBTN">
+							<div class="contact2-form-bgbtn" style="bottom:50px;position:absolute;"></div>
+							<button class="formBTN">
+								Add To Room
+							</button>
+						</div>
+          </div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+        
+</body>
+</html>
